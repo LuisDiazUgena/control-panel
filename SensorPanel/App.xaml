@@ -25,47 +25,48 @@
         <Geometry x:Key="IconGpu">M0,4 L2,4 L2,28 L0,28 Z M2,6 L30,6 L30,22 L2,22 Z M10,8.5 A5.5,5.5 0 1 1 9.99,8.5 Z M10,12.5 A1.5,1.5 0 1 1 9.99,12.5 Z
             M22,8.5 A5.5,5.5 0 1 1 21.99,8.5 Z M22,12.5 A1.5,1.5 0 1 1 21.99,12.5 Z M8,22 L24,22 L24,25 L8,25 Z</Geometry>
 
+        <!-- 161x140 tile; four rows of these fill the 600 px high screen -->
         <Style TargetType="{x:Type local:Tile}">
-            <Setter Property="Width" Value="127"/>
-            <Setter Property="Height" Value="92"/>
+            <Setter Property="Width" Value="161"/>
+            <Setter Property="Height" Value="140"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type local:Tile}">
                         <Grid>
                             <Path Stroke="{StaticResource Outline}" StrokeThickness="3" Fill="{StaticResource PanelFill}"
-                                  StrokeLineJoin="Miter"
-                                  Data="M2,22 L8,16 L54,16 L66,2 L119,2 L125,8 L125,72 L111,90 L2,90 Z"/>
-                            <Path Fill="{StaticResource Outline}" Data="M2,72 L20,90 L2,90 Z"/>
-                            <TextBlock Text="{TemplateBinding Label}" FontFamily="{StaticResource LabelFont}" FontSize="11"
+                                  Data="M2,30 L10,22 L62,22 L82,2 L152,2 L159,9 L159,116 L137,138 L2,138 Z"/>
+                            <Path Fill="{StaticResource Outline}" Data="M2,110 L30,138 L2,138 Z"/>
+                            <TextBlock Text="{TemplateBinding Label}" FontFamily="{StaticResource LabelFont}" FontSize="15"
                                        Foreground="{StaticResource TextMain}" HorizontalAlignment="Right" VerticalAlignment="Top"
                                        Margin="0,3,10,0"/>
-                            <TextBlock Text="{TemplateBinding Value}" FontFamily="{StaticResource ValueFont}" FontSize="36"
-                                       Foreground="{StaticResource TextMain}" Margin="11,15,0,0"
-                                       HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                            <Viewbox StretchDirection="DownOnly" Stretch="Uniform" Width="128" Height="80"
+                                     HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,24,0,0">
+                                <TextBlock Text="{TemplateBinding Value}" FontFamily="{StaticResource ValueFont}" FontSize="64"
+                                           FontWeight="SemiBold" Foreground="{StaticResource TextMain}"/>
+                            </Viewbox>
                             <Path Data="{TemplateBinding Icon}" Fill="{StaticResource Outline}" Stretch="Uniform"
-                                  Width="22" Height="28" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,14,10"/>
+                                  Width="26" Height="32" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,16,12"/>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
 
-        <!-- Big left-side panel frame (CPU / GPU / drives) -->
+        <!-- Big left-side panel frame (CPU / GPU / drives), 500x192; the title goes inside, top-left -->
         <Style x:Key="PanelFrame" TargetType="ContentControl">
-            <Setter Property="Width" Value="493"/>
-            <Setter Property="Height" Value="152"/>
+            <Setter Property="Width" Value="500"/>
+            <Setter Property="Height" Value="192"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ContentControl">
                         <Grid>
                             <Path Stroke="{StaticResource Outline}" StrokeThickness="3" Fill="{StaticResource PanelFill}"
-                                  Data="M2,12 L12,2 L462,2 L491,24 L491,132 L474,150 L12,150 L2,140 Z"/>
+                                  Data="M2,14 L14,2 L470,2 L498,26 L498,170 L476,190 L14,190 L2,178 Z"/>
                             <!-- side rail -->
-                            <Path Stroke="{StaticResource Outline}" StrokeThickness="3"
-                                  Data="M6,24 L14,24 L14,128 L6,128"/>
+                            <Path Stroke="{StaticResource Outline}" StrokeThickness="3" Data="M6,36 L14,36 L14,166 L6,166"/>
                             <!-- icon box -->
                             <Path Stroke="{StaticResource Outline}" StrokeThickness="3" Fill="#30101216"
-                                  Data="M34,22 L140,22 L148,30 L148,124 L140,132 L34,132 L26,124 L26,30 Z"/>
+                                  Data="M30,36 L118,36 L126,44 L126,172 L118,180 L30,180 L22,172 L22,44 Z"/>
                             <ContentPresenter/>
                         </Grid>
                     </ControlTemplate>
@@ -75,18 +76,24 @@
 
         <Style x:Key="PanelTitle" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="{StaticResource LabelFont}"/>
-            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontSize" Value="17"/>
             <Setter Property="Foreground" Value="{StaticResource TextMain}"/>
+            <Setter Property="Canvas.Left" Value="24"/>
+            <Setter Property="Canvas.Top" Value="7"/>
         </Style>
         <Style x:Key="Caption" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="{StaticResource ValueFont}"/>
-            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="{StaticResource LabelFont}"/>
+            <Setter Property="FontSize" Value="15"/>
             <Setter Property="Foreground" Value="{StaticResource TextDim}"/>
         </Style>
         <Style x:Key="Reading" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="{StaticResource ValueFont}"/>
-            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="Foreground" Value="{StaticResource TextMain}"/>
+        </Style>
+        <Style x:Key="SmallReading" TargetType="TextBlock" BasedOn="{StaticResource Reading}">
+            <Setter Property="FontSize" Value="24"/>
         </Style>
     </Application.Resources>
 </Application>

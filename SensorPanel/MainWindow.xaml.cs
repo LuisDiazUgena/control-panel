@@ -24,7 +24,7 @@ namespace SensorPanel
         bool _closing;
         readonly List<(TextBlock size, Rectangle bar, TextBlock temp)> _driveRows = new();
 
-        const double DriveBarWidth = 250;
+        const double DriveBarWidth = 270;
         static readonly CultureInfo Num = CultureInfo.InvariantCulture;
 
         public MainWindow(PanelConfig config)
@@ -95,26 +95,29 @@ namespace SensorPanel
             DriveRows.Children.Clear();
             _driveRows.Clear();
             int count = Math.Min(_config.Drives.Count, 3);
-            double spacing = count <= 2 ? 48 : 36;
-            double top = count <= 2 ? 26 : 16;
+            double spacing = count <= 2 ? 72 : 50;
+            double top = count <= 2 ? 40 : 30;
+            double barHeight = count <= 2 ? 22 : 16;
             var dim = (Brush)FindResource("TextDim");
+            var main = (Brush)FindResource("TextMain");
+            var labelFont = (FontFamily)FindResource("LabelFont");
 
             for (int i = 0; i < count; i++)
             {
                 double y = top + i * spacing;
-                var letter = new TextBlock { Text = _config.Drives[i].TrimEnd('\\') , FontStyle = FontStyles.Italic, FontSize = 13, Foreground = dim };
-                Canvas.SetLeft(letter, 162); Canvas.SetTop(letter, y);
+                var letter = new TextBlock { Text = _config.Drives[i].TrimEnd('\\'), FontFamily = labelFont, FontSize = 18, Foreground = main };
+                Canvas.SetLeft(letter, 142); Canvas.SetTop(letter, y - 2);
 
-                var size = new TextBlock { FontSize = 13, Foreground = dim, Width = DriveBarWidth, TextAlignment = TextAlignment.Center };
-                Canvas.SetLeft(size, 160); Canvas.SetTop(size, y);
+                var size = new TextBlock { FontFamily = labelFont, FontSize = 16, Foreground = dim, Width = DriveBarWidth - 30, TextAlignment = TextAlignment.Right };
+                Canvas.SetLeft(size, 172); Canvas.SetTop(size, y);
 
-                var track = new Rectangle { Width = DriveBarWidth, Height = 14, Fill = new SolidColorBrush(Color.FromArgb(0xC0, 0x55, 0x57, 0x5E)) };
-                Canvas.SetLeft(track, 160); Canvas.SetTop(track, y + 18);
-                var bar = new Rectangle { Width = 0, Height = 14, Fill = new SolidColorBrush(Color.FromRgb(0xDA, 0xDA, 0xDC)) };
-                Canvas.SetLeft(bar, 160); Canvas.SetTop(bar, y + 18);
+                var track = new Rectangle { Width = DriveBarWidth, Height = barHeight, Fill = new SolidColorBrush(Color.FromArgb(0xC0, 0x55, 0x57, 0x5E)) };
+                Canvas.SetLeft(track, 142); Canvas.SetTop(track, y + 24);
+                var bar = new Rectangle { Width = 0, Height = barHeight, Fill = new SolidColorBrush(Color.FromRgb(0xDA, 0xDA, 0xDC)) };
+                Canvas.SetLeft(bar, 142); Canvas.SetTop(bar, y + 24);
 
-                var temp = new TextBlock { FontSize = 13, Foreground = dim, Text = "--" };
-                Canvas.SetLeft(temp, 420); Canvas.SetTop(temp, y + 16);
+                var temp = new TextBlock { FontSize = 24, FontWeight = FontWeights.SemiBold, Foreground = main, Text = "--" };
+                Canvas.SetLeft(temp, 422); Canvas.SetTop(temp, y + 24 + barHeight / 2 - 16);
 
                 DriveRows.Children.Add(letter);
                 DriveRows.Children.Add(size);
@@ -281,8 +284,8 @@ namespace SensorPanel
             CpuLoadTile.Value = Fmt(s["cpuLoad"], "0");
             GpuLoadTile.Value = Fmt(s["gpuLoad"], "0");
             RamLoadTile.Value = Fmt(s["ramLoad"], "0");
-            CpuPowerTile.Value = Fmt(s["cpuPower"], "0.00");
-            GpuPowerTile.Value = Fmt(s["gpuPower"], "0.00");
+            CpuPowerTile.Value = Fmt(s["cpuPower"], "0.0");
+            GpuPowerTile.Value = Fmt(s["gpuPower"], "0.0");
             var tdp = s["gpuTdp"] ?? (s["gpuPower"] is double w && _config.GpuTdpWatts > 0 ? w / _config.GpuTdpWatts * 100 : null);
             GpuTdpTile.Value = Fmt(tdp, "0");
             FanTile.Value = Fmt(s["fan"], "0");
@@ -291,7 +294,7 @@ namespace SensorPanel
             {
                 var d = s.Drives[i];
                 var row = _driveRows[i];
-                row.size.Text = d.TotalGb > 0 ? $"{d.FreeGb:0} GB libres de {d.TotalGb:0} GB" : "no disponible";
+                row.size.Text = d.TotalGb > 0 ? $"{d.FreeGb:0} / {d.TotalGb:0} GB libres" : "no disponible";
                 row.bar.Width = DriveBarWidth * Math.Clamp(d.UsedFraction, 0, 1);
                 row.temp.Text = Fmt(d.Temperature, "0", "°C");
             }

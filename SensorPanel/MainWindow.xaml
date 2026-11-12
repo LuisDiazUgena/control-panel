@@ -24,73 +24,77 @@
             <Canvas x:Name="Backdrop" Width="1024" Height="600"/>
 
             <!-- CPU -->
-            <TextBlock x:Name="CpuTitle" Style="{StaticResource PanelTitle}" Canvas.Left="78" Canvas.Top="54" Text="CPU"/>
-            <ContentControl Style="{StaticResource PanelFrame}" Canvas.Left="12" Canvas.Top="68">
+            <ContentControl Style="{StaticResource PanelFrame}" Canvas.Left="8" Canvas.Top="8">
                 <Canvas>
+                    <TextBlock x:Name="CpuTitle" Style="{StaticResource PanelTitle}" Text="CPU"/>
                     <Path x:Name="CpuIcon" Data="{StaticResource IconCpu}" Fill="{StaticResource Outline}" Stretch="Uniform"
-                          Canvas.Left="44" Canvas.Top="34" Width="86" Height="86"/>
-                    <Image x:Name="CpuImage" Canvas.Left="36" Canvas.Top="30" Width="102" Height="94" Visibility="Collapsed"/>
-                    <TextBlock Style="{StaticResource Caption}" Canvas.Left="166" Canvas.Top="28" Text="CORE CLOCK"/>
-                    <TextBlock x:Name="CpuClock" Style="{StaticResource Reading}" Canvas.Left="166" Canvas.Top="44" Text="--"/>
-                    <local:Sparkline x:Name="CpuClockGraph" Canvas.Left="156" Canvas.Top="80" Width="100" Height="46" MinRange="4000"/>
-                    <TextBlock Style="{StaticResource Caption}" Canvas.Left="301" Canvas.Top="28" Text="CORE VOLTAGE"/>
-                    <TextBlock x:Name="CpuVoltage" Style="{StaticResource Reading}" Canvas.Left="306" Canvas.Top="44" Text="--"/>
-                    <local:Sparkline x:Name="CpuVoltageGraph" Canvas.Left="291" Canvas.Top="104" Width="100" Height="22" MinRange="1.4"/>
+                          Canvas.Left="36" Canvas.Top="70" Width="76" Height="76"/>
+                    <Image x:Name="CpuImage" Canvas.Left="28" Canvas.Top="44" Width="92" Height="128" Visibility="Collapsed"/>
+                    <TextBlock Style="{StaticResource Caption}" Canvas.Left="142" Canvas.Top="34" Text="CORE CLOCK"/>
+                    <TextBlock x:Name="CpuClock" Style="{StaticResource Reading}" Canvas.Left="142" Canvas.Top="50" Text="--"/>
+                    <local:Sparkline x:Name="CpuClockGraph" Canvas.Left="142" Canvas.Top="98" Width="160" Height="80" MinRange="4000"/>
+                    <TextBlock Style="{StaticResource Caption}" Canvas.Left="320" Canvas.Top="34" Text="CORE VOLTAGE"/>
+                    <TextBlock x:Name="CpuVoltage" Style="{StaticResource Reading}" Canvas.Left="320" Canvas.Top="50" Text="--"/>
+                    <local:Sparkline x:Name="CpuVoltageGraph" Canvas.Left="320" Canvas.Top="98" Width="160" Height="80" MinRange="1.4"/>
                 </Canvas>
             </ContentControl>
 
             <!-- GPU -->
-            <TextBlock x:Name="GpuTitle" Style="{StaticResource PanelTitle}" Canvas.Left="78" Canvas.Top="224" Text="GPU"/>
-            <ContentControl Style="{StaticResource PanelFrame}" Canvas.Left="12" Canvas.Top="238">
+            <ContentControl Style="{StaticResource PanelFrame}" Canvas.Left="8" Canvas.Top="204">
                 <Canvas>
+                    <TextBlock x:Name="GpuTitle" Style="{StaticResource PanelTitle}" Text="GPU"/>
                     <Path x:Name="GpuIcon" Data="{StaticResource IconGpu}" Fill="{StaticResource Outline}" Stretch="Uniform"
-                          Canvas.Left="40" Canvas.Top="36" Width="94" Height="82"/>
-                    <Image x:Name="GpuImage" Canvas.Left="36" Canvas.Top="30" Width="102" Height="94" Visibility="Collapsed"/>
-                    <TextBlock Style="{StaticResource Caption}" Canvas.Left="166" Canvas.Top="20" Text="CORE CLOCK"/>
-                    <TextBlock x:Name="GpuClock" Style="{StaticResource Reading}" Canvas.Left="166" Canvas.Top="36" Text="--"/>
-                    <local:Sparkline x:Name="GpuClockGraph" Canvas.Left="156" Canvas.Top="80" Width="100" Height="46" MinRange="1500"/>
-                    <TextBlock Style="{StaticResource Caption}" Canvas.Left="301" Canvas.Top="20" Text="GPU MEM"/>
-                    <TextBlock x:Name="GpuMemClock" Style="{StaticResource Reading}" Canvas.Left="301" Canvas.Top="36" Text="--"/>
-                    <local:Sparkline x:Name="GpuMemClockGraph" Canvas.Left="296" Canvas.Top="104" Width="100" Height="22" MinRange="5000"/>
+                          Canvas.Left="32" Canvas.Top="72" Width="84" Height="72"/>
+                    <Image x:Name="GpuImage" Canvas.Left="28" Canvas.Top="44" Width="92" Height="128" Visibility="Collapsed"/>
+                    <TextBlock Style="{StaticResource Caption}" Canvas.Left="142" Canvas.Top="34" Text="CORE CLOCK"/>
+                    <TextBlock x:Name="GpuClock" Style="{StaticResource Reading}" FontSize="27" Canvas.Left="142" Canvas.Top="51" Text="--"/>
+                    <local:Sparkline x:Name="GpuClockGraph" Canvas.Left="142" Canvas.Top="98" Width="128" Height="80" MinRange="1500"/>
+                    <TextBlock Style="{StaticResource Caption}" Canvas.Left="286" Canvas.Top="34" Text="GPU MEM"/>
+                    <TextBlock x:Name="GpuMemClock" Style="{StaticResource Reading}" FontSize="27" Canvas.Left="286" Canvas.Top="51" Text="--"/>
+                    <local:Sparkline x:Name="GpuMemClockGraph" Canvas.Left="286" Canvas.Top="98" Width="128" Height="80" MinRange="5000"/>
 
-                    <TextBlock Style="{StaticResource Caption}" Canvas.Left="432" Canvas.Top="20" Text="MEM"/>
-                    <TextBlock x:Name="GpuMemTemp" Style="{StaticResource Reading}" Canvas.Left="427" Canvas.Top="35" Text="--"/>
-                    <TextBlock Style="{StaticResource Caption}" Canvas.Left="432" Canvas.Top="60" Text="HOT"/>
-                    <TextBlock x:Name="GpuHotSpot" Style="{StaticResource Reading}" Canvas.Left="427" Canvas.Top="75" Text="--"/>
-                    <TextBlock x:Name="FpsCaption" Style="{StaticResource Caption}" Canvas.Left="432" Canvas.Top="100" Text="FPS"/>
-                    <TextBlock x:Name="Fps" Style="{StaticResource Reading}" Canvas.Left="446" Canvas.Top="115" Text="0"/>
+                    <TextBlock Style="{StaticResource Caption}" Canvas.Left="428" Canvas.Top="30" Text="MEM"/>
+                    <TextBlock x:Name="GpuMemTemp" Style="{StaticResource SmallReading}" Canvas.Left="428" Canvas.Top="45" Text="--"/>
+                    <TextBlock Style="{StaticResource Caption}" Canvas.Left="428" Canvas.Top="82" Text="HOT"/>
+                    <TextBlock x:Name="GpuHotSpot" Style="{StaticResource SmallReading}" Canvas.Left="428" Canvas.Top="97" Text="--"/>
+                    <TextBlock x:Name="FpsCaption" Style="{StaticResource Caption}" Canvas.Left="428" Canvas.Top="134" Text="FPS"/>
+                    <TextBlock x:Name="Fps" Style="{StaticResource SmallReading}" Canvas.Left="428" Canvas.Top="149" Text="0"/>
                 </Canvas>
             </ContentControl>
 
             <!-- Drives -->
-            <TextBlock Style="{StaticResource PanelTitle}" Canvas.Left="78" Canvas.Top="394" Text="DRIVES"/>
-            <ContentControl Style="{StaticResource PanelFrame}" Canvas.Left="12" Canvas.Top="408">
+            <ContentControl Style="{StaticResource PanelFrame}" Canvas.Left="8" Canvas.Top="400">
                 <Canvas>
+                    <TextBlock Style="{StaticResource PanelTitle}" Text="DRIVES"/>
                     <Path Data="{StaticResource IconFloppy}" Fill="{StaticResource Outline}" Stretch="Uniform"
-                          Canvas.Left="44" Canvas.Top="34" Width="86" Height="86"/>
+                          Canvas.Left="38" Canvas.Top="72" Width="72" Height="72"/>
                     <Canvas x:Name="DriveRows"/>
                 </Canvas>
             </ContentControl>
 
-            <!-- Tiles -->
-            <local:Tile x:Name="CpuTempTile" Label="CPU TEM" Icon="{StaticResource IconThermo}" Canvas.Left="530" Canvas.Top="68"/>
-            <local:Tile x:Name="GpuTempTile" Label="GPU TEM" Icon="{StaticResource IconThermo}" Canvas.Left="697" Canvas.Top="68"/>
-            <local:Tile x:Name="LiquidTempTile" Label="LIQ TEM" Icon="{StaticResource IconThermo}" Canvas.Left="864" Canvas.Top="68"/>
-            <local:Tile x:Name="CpuLoadTile" Label="CPU USG" Icon="{StaticResource IconGauge}" Canvas.Left="530" Canvas.Top="188"/>
-            <local:Tile x:Name="GpuLoadTile" Label="GPU USG" Icon="{StaticResource IconGauge}" Canvas.Left="697" Canvas.Top="188"/>
-            <local:Tile x:Name="RamLoadTile" Label="RAM USG" Icon="{StaticResource IconGauge}" Canvas.Left="864" Canvas.Top="188"/>
-            <local:Tile x:Name="CpuPowerTile" Label="CPU PWR" Icon="{StaticResource IconBolt}" Canvas.Left="530" Canvas.Top="308"/>
-            <local:Tile x:Name="GpuPowerTile" Label="GPU PWR" Icon="{StaticResource IconBolt}" Canvas.Left="697" Canvas.Top="308"/>
-            <local:Tile x:Name="GpuTdpTile" Label="GPU TDP" Icon="{StaticResource IconBolt}" Canvas.Left="864" Canvas.Top="308"/>
-            <local:Tile x:Name="FanTile" Label="FAN RPM" Icon="{StaticResource IconFan}" Canvas.Left="864" Canvas.Top="428"/>
+            <!-- Tiles: 3 columns x 4 rows, 161x140 with 8 px gaps -->
+            <local:Tile x:Name="CpuTempTile" Label="CPU TEMP" Icon="{StaticResource IconThermo}" Canvas.Left="516" Canvas.Top="8"/>
+            <local:Tile x:Name="GpuTempTile" Label="GPU TEMP" Icon="{StaticResource IconThermo}" Canvas.Left="685" Canvas.Top="8"/>
+            <local:Tile x:Name="LiquidTempTile" Label="LIQ TEMP" Icon="{StaticResource IconThermo}" Canvas.Left="854" Canvas.Top="8"/>
+            <local:Tile x:Name="CpuLoadTile" Label="CPU %" Icon="{StaticResource IconGauge}" Canvas.Left="516" Canvas.Top="156"/>
+            <local:Tile x:Name="GpuLoadTile" Label="GPU %" Icon="{StaticResource IconGauge}" Canvas.Left="685" Canvas.Top="156"/>
+            <local:Tile x:Name="RamLoadTile" Label="RAM %" Icon="{StaticResource IconGauge}" Canvas.Left="854" Canvas.Top="156"/>
+            <local:Tile x:Name="CpuPowerTile" Label="CPU W" Icon="{StaticResource IconBolt}" Canvas.Left="516" Canvas.Top="304"/>
+            <local:Tile x:Name="GpuPowerTile" Label="GPU W" Icon="{StaticResource IconBolt}" Canvas.Left="685" Canvas.Top="304"/>
+            <local:Tile x:Name="GpuTdpTile" Label="GPU TDP %" Icon="{StaticResource IconBolt}" Canvas.Left="854" Canvas.Top="304"/>
+            <local:Tile x:Name="FanTile" Label="FAN RPM" Icon="{StaticResource IconFan}" Canvas.Left="854" Canvas.Top="452"/>
 
-            <!-- Clock -->
-            <TextBlock x:Name="Clock" Canvas.Left="528" Canvas.Top="392" FontFamily="{StaticResource ValueFont}" FontSize="100"
-                       Foreground="{StaticResource TextMain}" Text="00:00"/>
-            <TextBlock x:Name="Date" Canvas.Left="540" Canvas.Top="510" FontFamily="{StaticResource ValueFont}" FontSize="26"
-                       Foreground="{StaticResource TextMain}" Text="01/01/2026"/>
+            <!-- Clock: fills the two free cells of the bottom row -->
+            <Viewbox Canvas.Left="516" Canvas.Top="452" Width="330" Height="140" Stretch="Uniform">
+                <StackPanel Margin="4,0">
+                    <TextBlock x:Name="Clock" FontFamily="{StaticResource ValueFont}" FontSize="100" FontWeight="SemiBold"
+                               Foreground="{StaticResource TextMain}" Text="00:00" Margin="0,-16,0,-14"/>
+                    <TextBlock x:Name="Date" FontFamily="{StaticResource ValueFont}" FontSize="26"
+                               Foreground="{StaticResource TextMain}" Text="01/01/2026" Margin="6,0,0,0"/>
+                </StackPanel>
+            </Viewbox>
 
-            <TextBlock x:Name="Status" Canvas.Left="12" Canvas.Top="576" FontSize="12" Foreground="#FFB0B0"
+            <TextBlock x:Name="Status" Canvas.Left="150" Canvas.Top="582" FontSize="12" Foreground="#FFB0B0"
                        Visibility="Collapsed"/>
         </Canvas>
     </Viewbox>
