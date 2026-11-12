@@ -105,11 +105,11 @@ namespace SensorPanel
             for (int i = 0; i < count; i++)
             {
                 double y = top + i * spacing;
-                var letter = new TextBlock { Text = _config.Drives[i].TrimEnd('\\'), FontFamily = labelFont, FontSize = 18, Foreground = main };
-                Canvas.SetLeft(letter, 142); Canvas.SetTop(letter, y - 2);
+                var letter = new TextBlock { Text = _config.Drives[i].TrimEnd('\\'), FontFamily = labelFont, FontSize = 22, Foreground = main };
+                Canvas.SetLeft(letter, 142); Canvas.SetTop(letter, y - 5);
 
-                var size = new TextBlock { FontFamily = labelFont, FontSize = 16, Foreground = dim, Width = DriveBarWidth - 30, TextAlignment = TextAlignment.Right };
-                Canvas.SetLeft(size, 172); Canvas.SetTop(size, y);
+                var size = new TextBlock { FontFamily = labelFont, FontSize = 19, Foreground = dim, Width = DriveBarWidth - 30, TextAlignment = TextAlignment.Right };
+                Canvas.SetLeft(size, 172); Canvas.SetTop(size, y - 2);
 
                 var track = new Rectangle { Width = DriveBarWidth, Height = barHeight, Fill = new SolidColorBrush(Color.FromArgb(0xC0, 0x55, 0x57, 0x5E)) };
                 Canvas.SetLeft(track, 142); Canvas.SetTop(track, y + 24);

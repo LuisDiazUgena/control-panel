@@ -34,13 +34,13 @@
                     <ControlTemplate TargetType="{x:Type local:Tile}">
                         <Grid>
                             <Path Stroke="{StaticResource Outline}" StrokeThickness="3" Fill="{StaticResource PanelFill}"
-                                  Data="M2,30 L10,22 L62,22 L82,2 L152,2 L159,9 L159,116 L137,138 L2,138 Z"/>
+                                  Data="M2,36 L10,28 L36,28 L60,2 L152,2 L159,9 L159,116 L137,138 L2,138 Z"/>
                             <Path Fill="{StaticResource Outline}" Data="M2,110 L30,138 L2,138 Z"/>
-                            <TextBlock Text="{TemplateBinding Label}" FontFamily="{StaticResource LabelFont}" FontSize="15"
+                            <TextBlock Text="{TemplateBinding Label}" FontFamily="{StaticResource LabelFont}" FontSize="20"
                                        Foreground="{StaticResource TextMain}" HorizontalAlignment="Right" VerticalAlignment="Top"
-                                       Margin="0,3,10,0"/>
-                            <Viewbox StretchDirection="DownOnly" Stretch="Uniform" Width="128" Height="80"
-                                     HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,24,0,0">
+                                       Margin="0,3,9,0"/>
+                            <Viewbox StretchDirection="DownOnly" Stretch="Uniform" Width="128" Height="78"
+                                     HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,30,0,0">
                                 <TextBlock Text="{TemplateBinding Value}" FontFamily="{StaticResource ValueFont}" FontSize="64"
                                            FontWeight="SemiBold" Foreground="{StaticResource TextMain}"/>
                             </Viewbox>
@@ -76,14 +76,14 @@
 
         <Style x:Key="PanelTitle" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="{StaticResource LabelFont}"/>
-            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="FontSize" Value="22"/>
             <Setter Property="Foreground" Value="{StaticResource TextMain}"/>
             <Setter Property="Canvas.Left" Value="24"/>
-            <Setter Property="Canvas.Top" Value="7"/>
+            <Setter Property="Canvas.Top" Value="4"/>
         </Style>
         <Style x:Key="Caption" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="{StaticResource LabelFont}"/>
-            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontSize" Value="19"/>
             <Setter Property="Foreground" Value="{StaticResource TextDim}"/>
         </Style>
         <Style x:Key="Reading" TargetType="TextBlock">
