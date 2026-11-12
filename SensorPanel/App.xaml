@@ -1,0 +1,92 @@
+<Application x:Class="SensorPanel.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:SensorPanel"
+             ShutdownMode="OnMainWindowClose">
+    <Application.Resources>
+        <SolidColorBrush x:Key="Outline" Color="#16181D"/>
+        <SolidColorBrush x:Key="PanelFill" Color="#59161A20"/>
+        <SolidColorBrush x:Key="TextMain" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="TextDim" Color="#E6E8EC"/>
+        <FontFamily x:Key="LabelFont">Bahnschrift SemiBold, Segoe UI</FontFamily>
+        <FontFamily x:Key="ValueFont">Segoe UI, Arial</FontFamily>
+
+        <!-- Icons (drawn in black, scaled to their box) -->
+        <Geometry x:Key="IconThermo">F1 M10,4 A4,4 0 0 1 18,4 L18,17 A7,7 0 1 1 10,17 Z</Geometry>
+        <Geometry x:Key="IconGauge">F1 M12,1 A11,11 0 1 1 11.99,1 Z M12,4 A8,8 0 1 0 12.01,4 Z M13.6,10.4 L6,5 L5,6 L10.4,13.6 A2.3,2.3 0 1 0 13.6,10.4 Z</Geometry>
+        <Geometry x:Key="IconBolt">F1 M14,0 L2,17 L10,17 L6,30 L20,12 L12,12 L16,0 Z</Geometry>
+        <Geometry x:Key="IconFan">F1 M12,12 C6,6 10,0 14,2 C17,4 15,8 12,12 Z M12,12 C18,6 24,10 22,14 C20,17 16,15 12,12 Z M12,12 C18,18 14,24 10,22 C7,20 9,16 12,12 Z M12,12 C6,18 0,14 2,10 C4,7 8,9 12,12 Z</Geometry>
+        <Geometry x:Key="IconFloppy">M2,2 L24,2 L30,8 L30,30 L2,30 Z M7,4 L23,4 L23,12 L7,12 Z M17,5.5 L21,5.5 L21,10.5 L17,10.5 Z M16,15 A6,6 0 1 1 15.99,15 Z M16,18.5 A2.5,2.5 0 1 1 15.99,18.5 Z</Geometry>
+        <Geometry x:Key="IconCpu">M8,8 L24,8 L24,24 L8,24 Z M11,11 L21,11 L21,21 L11,21 Z M13,13 L19,13 L19,19 L13,19 Z
+            M10,3 L12,3 L12,8 L10,8 Z M15,3 L17,3 L17,8 L15,8 Z M20,3 L22,3 L22,8 L20,8 Z
+            M10,24 L12,24 L12,29 L10,29 Z M15,24 L17,24 L17,29 L15,29 Z M20,24 L22,24 L22,29 L20,29 Z
+            M3,10 L8,10 L8,12 L3,12 Z M3,15 L8,15 L8,17 L3,17 Z M3,20 L8,20 L8,22 L3,22 Z
+            M24,10 L29,10 L29,12 L24,12 Z M24,15 L29,15 L29,17 L24,17 Z M24,20 L29,20 L29,22 L24,22 Z</Geometry>
+        <Geometry x:Key="IconGpu">M0,4 L2,4 L2,28 L0,28 Z M2,6 L30,6 L30,22 L2,22 Z M10,8.5 A5.5,5.5 0 1 1 9.99,8.5 Z M10,12.5 A1.5,1.5 0 1 1 9.99,12.5 Z
+            M22,8.5 A5.5,5.5 0 1 1 21.99,8.5 Z M22,12.5 A1.5,1.5 0 1 1 21.99,12.5 Z M8,22 L24,22 L24,25 L8,25 Z</Geometry>
+
+        <Style TargetType="{x:Type local:Tile}">
+            <Setter Property="Width" Value="127"/>
+            <Setter Property="Height" Value="92"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type local:Tile}">
+                        <Grid>
+                            <Path Stroke="{StaticResource Outline}" StrokeThickness="3" Fill="{StaticResource PanelFill}"
+                                  StrokeLineJoin="Miter"
+                                  Data="M2,22 L8,16 L54,16 L66,2 L119,2 L125,8 L125,72 L111,90 L2,90 Z"/>
+                            <Path Fill="{StaticResource Outline}" Data="M2,72 L20,90 L2,90 Z"/>
+                            <TextBlock Text="{TemplateBinding Label}" FontFamily="{StaticResource LabelFont}" FontSize="11"
+                                       Foreground="{StaticResource TextMain}" HorizontalAlignment="Right" VerticalAlignment="Top"
+                                       Margin="0,3,10,0"/>
+                            <TextBlock Text="{TemplateBinding Value}" FontFamily="{StaticResource ValueFont}" FontSize="36"
+                                       Foreground="{StaticResource TextMain}" Margin="11,15,0,0"
+                                       HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                            <Path Data="{TemplateBinding Icon}" Fill="{StaticResource Outline}" Stretch="Uniform"
+                                  Width="22" Height="28" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,14,10"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Big left-side panel frame (CPU / GPU / drives) -->
+        <Style x:Key="PanelFrame" TargetType="ContentControl">
+            <Setter Property="Width" Value="493"/>
+            <Setter Property="Height" Value="152"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ContentControl">
+                        <Grid>
+                            <Path Stroke="{StaticResource Outline}" StrokeThickness="3" Fill="{StaticResource PanelFill}"
+                                  Data="M2,12 L12,2 L462,2 L491,24 L491,132 L474,150 L12,150 L2,140 Z"/>
+                            <!-- side rail -->
+                            <Path Stroke="{StaticResource Outline}" StrokeThickness="3"
+                                  Data="M6,24 L14,24 L14,128 L6,128"/>
+                            <!-- icon box -->
+                            <Path Stroke="{StaticResource Outline}" StrokeThickness="3" Fill="#30101216"
+                                  Data="M34,22 L140,22 L148,30 L148,124 L140,132 L34,132 L26,124 L26,30 Z"/>
+                            <ContentPresenter/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="PanelTitle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource LabelFont}"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Foreground" Value="{StaticResource TextMain}"/>
+        </Style>
+        <Style x:Key="Caption" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource ValueFont}"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="{StaticResource TextDim}"/>
+        </Style>
+        <Style x:Key="Reading" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource ValueFont}"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Foreground" Value="{StaticResource TextMain}"/>
+        </Style>
+    </Application.Resources>
+</Application>
