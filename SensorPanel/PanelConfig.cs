@@ -84,7 +84,7 @@ namespace SensorPanel
             ["gpuTdp"] = new("Gpu*", "Load", "GPU Power|GPU Board Power"),
 
             ["ramLoad"] = new("Memory", "Load", "Memory") { Device = "Total Memory|Generic Memory" },
-            ["liquidTemp"] = new("*", "Temperature", "*Liquid*|*Coolant*|*Water*"),
+            ["liquidTemp"] = new("*", "Temperature", "*Liquid*|*Coolant*|*Water*|External #1"),
             ["fan"] = new("*", "Fan", "CPU Fan|*Pump*|Fan #1|*"),
         };
 

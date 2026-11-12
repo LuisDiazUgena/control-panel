@@ -50,7 +50,7 @@ Se crea la primera vez que se abre la app.
 
 ### Temperatura del líquido
 
-LibreHardwareMonitor solo da una temperatura de líquido si la AIO la expone (algunos modelos de Corsair o NZXT) o si tienes una sonda conectada a la placa. Busca en `sensores.txt` el sensor correcto (por ejemplo, `External #1` en placas Gigabyte) y ponlo en `sensors.liquidTemp.id`.
+LibreHardwareMonitor solo da una temperatura de líquido si la AIO la expone (algunos modelos de Corsair o NZXT) o si tienes una sonda conectada a la placa. Por defecto se usa `External #1` (la entrada de sonda de las placas Gigabyte) si no hay un sensor de líquido. Si tu sonda está en otra entrada, búscala en `sensores.txt` y ponla en `sensors.liquidTemp.id`.
 
 ## Estructura
 
